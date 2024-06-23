@@ -164,20 +164,17 @@ function system_test() {
   fi
 
   let "RESULT_TOTAL+=1";
-  if [[ $(check_command "tac_plus") -eq 0 ]]; then
+  if [[ $(check_command "tac_plus") -eq 0 || TACACS_INSTALL -eq "force" ]]; then
     error_message "Error! Tacacs Not Installed! Try to install";
-    echo $(ls -l ${MAIN_PATH} | grep -E "DEVEL\..*\.tar.bz2" | wc -l)
-    if [[ $(ls -l ${MAIN_PATH} | grep -E "DEVEL\..*\.tar.bz2" | wc -l) == '1' ]]; then
-      sudo rm -r ${MAIN_PATH}/PROJECTS/ 2>&1 > /dev/null && echo 'Last dir deleted' || echo 'Last dir not found'
-      echo "${MAIN_PATH}/DEVEL*tar.bz2"
-      tar -C ${MAIN_PATH} -jxf ${MAIN_PATH}/DEVEL*tar.bz2 && echo 'Unpacked' || echo 'Something goes wrong...'
-      #(cd ./PROJECTS/ && ./configure --with-pcre --with-lwres tac_plus && make && make install)
-      cd $MAIN_PATH/PROJECTS/ && echo 'Go to PROJECTS'
-      sudo ./configure --with-pcre tac_plus && echo '(configure) Configure done' || echo 'Something goes wrong...'
-      sudo make && echo 'make done' || echo '(make) Something goes wrong...'
-      sudo make install && echo 'make install done' || echo '(make install) Something goes wrong...'
-      cd $MAIN_PATH && echo 'Go back to script dir'
-    fi
+    sudo rm -r ${MAIN_PATH}/PROJECTS/ 2>&1 > /dev/null && echo 'Last dir deleted' || echo 'Last dir not found'
+    echo "git clone 2fe846a7cbf5fd2f68d37820429778d132d5e69d github.com/MarcJHuber/event-driven-servers"
+    git clone https://github.com/MarcJHuber/event-driven-servers.git PROJECTS
+    cd $MAIN_PATH/PROJECTS/ && echo 'Go to PROJECTS'
+    git checkout 2fe846a7cbf5fd2f68d37820429778d132d5e69d && echo 'Reset to 2fe846a (12/04/2024)'
+    sudo ./configure --with-pcre tac_plus && echo '(configure) Configure done' || echo 'Something goes wrong...'
+    sudo make && echo 'make done' || echo '(make) Something goes wrong...'
+    sudo make install && echo 'make install done' || echo '(make install) Something goes wrong...'
+    cd $MAIN_PATH && echo 'Go back to script dir'
     if [[ $(check_command "tac_plus") -eq 0 ]]; then
       error_message "Error! Tacacs Not Installed!"; let "RESULT_ERRORS+=1";
       return;
