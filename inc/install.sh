@@ -252,7 +252,7 @@ echo "
 		rm -Rf /opt/tacacsgui/.* 2> /dev/null
 	fi
 	echo "Download latest version..."
-	sudo -u  www-data git -C /opt/tacacsgui clone https://github.com/tacacsgui/tacacsgui /opt/tacacsgui
+	sudo -u  www-data git -C /opt/tacacsgui clone https://github.com/aztec102/tacacsgui /opt/tacacsgui
 	chmod 774 /opt/tacacsgui/main.sh /opt/tacacsgui/backup.sh /opt/tacacsgui/tac_plus.sh
 	chmod 777 /opt/tacacsgui/parser/tacacs_parser.sh
 	sudo -u  www-data touch /opt/tacacsgui/tacTestOutput.txt
