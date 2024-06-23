@@ -25,7 +25,7 @@ function check_command() {
   echo $(command -v $1 | wc -l | tr -d '[:space:]'); return;
 }
 function check_repo() {
-  if [[ $(cat /etc/apt/sources.list | grep "archive.ubuntu.com/ubuntu/ xenial" | wc -l) == 0 ]]; then
+  if [[ $(cat /etc/apt/sources.list | grep "archive.ubuntu.com/ubuntu/ focal" | wc -l) == 0 ]]; then
     echo "
     deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
     deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse
