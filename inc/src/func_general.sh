@@ -186,7 +186,7 @@ function system_test() {
   if [[ $(check_php) -eq 0 ]]; then
     error_message "Error! PHP 7.3 Not Installed! Try to install.";
     if [[ $(sudo apt-cache search php7.3 | wc -l) == 0 ]]; then
-    	sudo apt-get install python-software-properties -y
+    	sudo apt-get install software-properties-common -y
     	sudo add-apt-repository ppa:ondrej/php -y
     	sudo apt-get update
     fi
