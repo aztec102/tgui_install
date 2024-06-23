@@ -27,10 +27,8 @@ function check_command() {
 function check_repo() {
   if [[ $(cat /etc/apt/sources.list | grep "archive.ubuntu.com/ubuntu/ xenial" | wc -l) == 0 ]]; then
     echo "
-    deb http://us.archive.ubuntu.com/ubuntu/ xenial universe
-    deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates universe
-    deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted
-    deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+    deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
+    deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse
     " >> /etc/apt/sources.list
   fi
 }
@@ -69,7 +67,7 @@ function check_packages_list() {
   'make' 'gcc' 'openssl' 'apache2' 'lwresd' \
   'curl' 'zip' 'unzip' 'libnet-ldap-perl' 'ldap-utils' 'ntp' \
   'libapache2-mod-xsendfile' 'libpcre3-dev:amd64' \
-  'libbind-dev')
+  'libbind-dev' 'git')
 
   if [[ $1 == 'list' ]]; then
     echo "We must have:"
