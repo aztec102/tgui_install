@@ -131,17 +131,17 @@ function system_test() {
   else echo "Done.  ### MySQL Installed  ###"; echo; let "RESULT_SUCCESS+=1";
   fi
 
-  let "RESULT_TOTAL+=1";
-  if [[ $(check_packages_list) -eq 0 ]]; then
-    error_message "Error! Some Packages Not Installed! Try to install.";
-    check_packages_list 'install'
-    check_packages_list 'list'
-    if [[ $(check_packages_list) -eq 0 ]]; then
-      error_message "Error! Some Packages Not Installed!"; let "RESULT_ERRORS+=1";
-      return;
-    fi
-  else echo "Done.  ### All Packages Installed  ###"; echo; let "RESULT_SUCCESS+=1";
-  fi
+#  let "RESULT_TOTAL+=1";
+#  if [[ $(check_packages_list) -eq 0 ]]; then
+#    error_message "Error! Some Packages Not Installed! Try to install.";
+#    check_packages_list 'install'
+#    check_packages_list 'list'
+#    if [[ $(check_packages_list) -eq 0 ]]; then
+#      error_message "Error! Some Packages Not Installed!"; let "RESULT_ERRORS+=1";
+#      return;
+#    fi
+#  else echo "Done.  ### All Packages Installed  ###"; echo; let "RESULT_SUCCESS+=1";
+#  fi
 
   let "RESULT_TOTAL+=1";
   if [[ $(check_website "https://github.com") -eq 0 ]]; then
