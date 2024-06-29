@@ -149,8 +149,8 @@ echo "
 			MYSQL_USER_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9_-~' | fold -w 32 | head -n 1)
 			#SHOW GRANTS FOR 'tgui_user'@'localhost';
                         echo "CREATE USER 'tgui_user'@'localhost' IDENTIFIED BY '${MYSQL_USER_PASSWORD}';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null
-			echo "GRANT ALL ON tgui.* TO 'tgui_user'@'localhost';"
-			echo "GRANT ALL ON tgui_log.* TO 'tgui_user'@'localhost';"
+			echo "GRANT ALL ON tgui.* TO 'tgui_user'@'localhost';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null
+			echo "GRANT ALL ON tgui_log.* TO 'tgui_user'@'localhost';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null
 			echo 'MYSQL user tgui_user was created'
 	else
 		echo 'Already created'
@@ -195,7 +195,7 @@ echo "
 		# 		# fi
 		# 	fi
 		# fi
-		echo "GRANT ALL ON tgui.* TO 'tgui_user'@'localhost' IDENTIFIED BY '${MYSQL_USER_PASSWORD}';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null;
+		echo "GRANT ALL ON tgui.* TO 'tgui_user'@'localhost';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null;
 		echo -n "Added for DB tgui..."
 	fi
 	if [ $(check_mysql_user_grants $MYSQL_PASSWORD tgui_user tgui_log) -eq 0 ]; then
@@ -211,7 +211,7 @@ echo "
 				# fi
 			fi
 		fi
-		echo "GRANT ALL ON tgui_log.* TO 'tgui_user'@'localhost' IDENTIFIED BY '${MYSQL_USER_PASSWORD}';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null;
+		echo "GRANT ALL ON tgui_log.* TO 'tgui_user'@'localhost';" | mysql -uroot -p${MYSQL_PASSWORD} 2>/dev/null;
 		echo -n "Added for DB tgui_log..."
 	fi
 	echo "Done"
